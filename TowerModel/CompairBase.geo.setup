@@ -1,10 +1,10 @@
 Name MyComPair
 Verision 0.0
 
-Include ../materials/Materials.geo
+Include Materials.geo
 DefaultRangeCut 0.000002
 
-SurroundingSphere 300.0  0.0  0.0  0.0  300.0
+SurroundingSphere 100.0  0.0  0.0  0.0  100.0
 
 Volume WorldVolume
 WorldVolume.Material Vacuum
@@ -25,18 +25,58 @@ Include SiStripProperties.det
 Include CalorimeterCSIDetector.geo
 Include CalorimeterCSIProperties.det
 
+# ****************   ACD  beginning ***********
 # This is our ACD
 Include ACDDetector.geo
-Include ACDProperties.det
+Include ACDDetector.det
 
-# Builds the detector volumes
-Volume ACD
-ACD.Material Vacuum
-ACD.Visibility 0
-ACD.Virtual true
-ACD.Shape BRIK 50.0 50.0 35.75
-ACD.Position 0.0 0.0 35.0
-ACD.Mother WorldVolume
+# Include ACD panels
+topACDPanel.Copy Panel1
+Panel1.Position 0. 0. 70.75 
+Panel1.Mother WorldVolume
+
+# include top supporting panel
+topSupportPanel.Copy PanelS1
+PanelS1.Position 0. 0. 69.25
+PanelS1.Mother WorldVolume
+
+
+sideACDPanelX.Copy Panel2
+Panel2.Position 0. -49.25 35.
+Panel2.Mother WorldVolume
+
+# include side supporting panel
+sideSupportPanelX.Copy PanelS2
+PanelS2.Position 0. -47.75. 34.25
+PanelS2.Mother WorldVolume
+
+sideACDPanelX.Copy Panel3
+Panel3.Position 0. 49.25 35.
+Panel3.Mother WorldVolume
+
+sideSupportPanelX.Copy PanelS3
+PanelS3.Position 0. 47.75. 34.25
+PanelS3.Mother WorldVolume
+
+
+sideACDPanelY.Copy Panel4
+Panel4.Position -49.25 0. 35.
+Panel4.Mother WorldVolume
+
+sideSupportPanelY.Copy PanelS4
+PanelS4.Position -47.75 0. 34.25
+PanelS4.Mother WorldVolume
+
+
+sideACDPanelY.Copy Panel5
+Panel5.Position 49.25 0. 35.
+Panel5.Mother WorldVolume
+
+sideSupportPanelY.Copy PanelS5
+PanelS5.Position 47.75 0. 34.25
+PanelS5.Mother WorldVolume
+
+#  ***************  ACD  end  **********
 
 Volume Tracker
 Tracker.Material Vacuum
@@ -74,15 +114,17 @@ For I 2 -20.0 40.0
 Done
 
 # Adds the ACD to the detector volume
-ACDDetector.Copy ACD_Det
-ACD_Det.Position 0. 0. 0.
-ACD_Det.Mother ACD
+//ACDDetector.Copy ACD_Det
+//ACD_Det.Position 0. 0. 0.
+//ACD_Det.Mother ACD
 
 # Base Triggers, require 2 hits in Si Detector, and no hits in the CsI
 # Probably should implement an ACD Veto? 
 Trigger MainTrigger
 MainTrigger.Veto False
 MainTrigger.TriggerByDetector True
-MainTrigger.Detector SStrip 2
+MainTrigger.Detector SStrip 1
 MainTrigger.Detector DCalCSI 1
+//Maintrigger.Detecor DACDDetector 1
+   
 
