@@ -1,0 +1,56 @@
+// This is to define ACD as a detector
+// I am using two options for the detector. One is to use Scintillator (or MDACS which is the same), and the
+other option is to use AngerCamera. The former one does not have position sensitivity, but allows to divide
+the volume on several sensitivive volumes. The latter one does have position sensitivity, but cannot be
+divided (see e-mails from Andreas of May 17, 2016)
+
+
+//   Defining Top section
+//Scintillator topACD
+
+AngerCamera topACD
+topACD.SensitiveVolume topACDPanel
+topACD.DetectorVolume topACDPanel
+topACD.StructuralPitch 0 0 0  // to be commented if scintillator is used
+topACD.StructuralOffset 0 0 0  // to be commented if scintillator is used
+topACD.Positioning XYZ        // to be commented if scintillator is used
+topACD.PositionResolution 0. 1.  // to be commented if scintillator is used
+topACD.PositionResolution 1000. 1.  // to be commented if scintillator is used
+
+//Scintillator sideACDX
+AngerCamera sideACDX
+sideACDX.SensitiveVolume sideACDPanelX
+sideACDX.DetectorVolume sideACDPanelX
+sideACDX.StructuralPitch 0 0 0  // to be commented if scintillator is used
+sideACDX.StructuralOffset 0 0 0  // to be commented if scintillator is used
+sideACDX.Positioning XYZ        // to be commented if scintillator is used
+sideACDX.PositionResolution 0. 1.  // to be commented if scintillator is used
+sideACDX.PositionResolution 1000. 1.  // to be commented if scintillator is used
+
+
+//Scintillator sideACDY
+AngerCamera sideACDY
+sideACDY.SensitiveVolume sideACDPanelY
+sideACDY.DetectorVolume sideACDPanelY
+sideACDY.StructuralPitch 0 0 0  // to be commented if scintillator is used
+sideACDY.StructuralOffset 0 0 0  // to be commented if scintillator is used
+sideACDY.Positioning XYZ        // to be commented if scintillator is used
+sideACDY.PositionResolution 0. 1.  // to be commented if scintillator is used
+sideACDY.PositionResolution 1000. 1.  // to be commented if scintillator is used
+
+
+
+topACD.NoiseThreshold 100
+topACD.TriggerThreshold 100
+topACD.EnergyResolution Ideal
+
+sideACDX.NoiseThreshold 100
+sideACDX.TriggerThreshold 100
+sideACDX.EnergyResolution Ideal
+
+sideACDY.NoiseThreshold 100
+sideACDY.TriggerThreshold 100
+sideACDY.EnergyResolution Ideal
+
+
+
